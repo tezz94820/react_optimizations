@@ -56,5 +56,5 @@ here now we added the keys hence entire tree will not be rerendered. only that c
 # React and React-Dom library.
 1. React library is responsible for reconcialtion process and diffing algorithm.
 2. react-dom is responsible for rendering process from virtual DOM to real DOM.
-3. React Native does both the job by itself i.e diffing and rendering.
+3. React Native does both the job by itself i.e diffing and rendering, but it renders to native components for mobile platforms, not the browser's DOM.
  
