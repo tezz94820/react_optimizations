@@ -36,4 +36,25 @@ if we added a new children in between the previously added childrens then the en
 ![](./images/img5.png)
 here now we added the keys hence entire tree will not be rerendered. only that changed children  will be added to that component.
 
+# React Prevents XSS attack
+![](./images/img8.png)
 
+1. Symbol(react.createElement): In JavaScript, Symbol is a data type that represents a unique and immutable value. In this context, Symbol(react.createElement) is creating a unique symbol that is associated with React's createElement function. This symbol is used internally by React to identify React elements.
+
+2. typeof: This is a property used internally by React to identify the type of an object. When you create a React element using React.createElement, React assigns a specific value to the $$typeof property for that element. This value is the unique symbol Symbol(react.createElement).
+
+## So, why is this relevant to security?
+
+1. React uses the $$typeof property to distinguish React elements from plain JavaScript objects. This can be helpful in preventing XSS attacks when rendering user-generated content in React components.
+
+2. For example, if you were to render user-generated HTML content in a React component without proper sanitization, it could potentially lead to XSS vulnerabilities. However, React's use of the $$typeof property helps it recognize which objects are React elements and which are not. React elements are treated differently and undergo a process called "reconciliation," which ensures that the rendered content is safe by default.
+
+3. In essence, React uses this mechanism to differentiate between trusted React elements and untrusted user-generated content. It doesn't prevent XSS attacks on its own, but it helps React identify what should be treated as potentially unsafe and what should be handled with caution.
+
+4. To prevent XSS attacks, it's essential to follow best practices, such as sanitizing user input, using libraries like DOMPurify to sanitize HTML content, and understanding how React handles and renders user-generated data. The $$typeof property is just one piece of React's overall security strategy.
+
+# React and React-Dom library.
+1. React library is responsible for reconcialtion process and diffing algorithm.
+2. react-dom is responsible for rendering process from virtual DOM to real DOM.
+3. React Native does both the job by itself i.e diffing and rendering.
+ 
